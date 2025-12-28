@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .sidebar-btn {
+    @apply w-full flex items-center gap-3 px-4 py-3 rounded-xl
+      bg-gradient-to-b from-cyan-400 via-blue-600 to-indigo-900
+      text-white font-semibold hover:opacity-90 transition;
+  }
+}
+
+
