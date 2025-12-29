@@ -19,11 +19,11 @@ const FloatingChatbot = () => {
     setAnswers([]);
   };
 
-  // Scroll to bottom when answers update
+ 
   useEffect(() => {
     answersEndRef.current?.scrollIntoView({ behavior: "smooth" });
 
-    // Auto-adjust height based on content
+  
     if (chatBodyRef.current) {
       const body = chatBodyRef.current;
       const scrollHeight = body.scrollHeight;
@@ -192,7 +192,7 @@ const FloatingChatbot = () => {
 
   return (
     <>
-      {/* Floating button */}
+  
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={toggleChat}
@@ -202,17 +202,16 @@ const FloatingChatbot = () => {
         </button>
       </div>
 
-      {/* Chatbox */}
       {isOpen && (
         <div
           className="fixed bottom-20 right-6 w-80 bg-gradient-to-br from-sky-200 to-white shadow-xl rounded-xl flex flex-col overflow-hidden z-50 animate-slide-up transition-all duration-300"
         >
-          {/* Header */}
+   
           <div className="bg-sky-500 text-white p-3 font-bold text-center">
             Task Assistant
           </div>
 
-          {/* Chat body */}
+     
           <div
             ref={chatBodyRef}
             className="flex flex-col p-3 gap-2 overflow-y-auto max-h-[600px]"

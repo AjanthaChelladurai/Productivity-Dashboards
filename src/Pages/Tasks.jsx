@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-// REDUX IMPORTS
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, deleteTask, updateTask, updateStatus } from "../redux/tasksSlice";
 
@@ -12,7 +11,7 @@ const Tasks = () => {
     Array.isArray(state.tasks.tasks) ? state.tasks.tasks : []
   );
 
-  // LOCAL UI STATE
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Low");
@@ -20,14 +19,14 @@ const Tasks = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editTaskData, setEditTaskData] = useState(null);
 
-  // PRIORITY COLORS
+ 
   const getPriorityBg = (p) => {
     if (p === "High") return "bg-red-300";
     if (p === "Medium") return "bg-yellow-200";
     return "bg-green-300";
   };
 
-  // ADD TASK
+
   const handleAddTask = () => {
     if (!title.trim()) {
       alert("Please enter a task title");
@@ -45,31 +44,30 @@ const Tasks = () => {
       })
     );
 
-    // RESET INPUTS
+  
     setTitle("");
     setDescription("");
     setPriority("Low");
     setDueDate("");
   };
 
-  // DELETE
+
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
   };
 
-  // OPEN EDIT
   const openEditModal = (task) => {
     setEditTaskData(task);
     setIsEditOpen(true);
   };
 
-  // UPDATE TASK
+ 
   const handleUpdate = () => {
     dispatch(updateTask(editTaskData));
     setIsEditOpen(false);
   };
 
-  // DRAG & DROP
+ 
   const onDragEnd = (result) => {
     if (!result.destination) return;
     dispatch(
@@ -80,7 +78,7 @@ const Tasks = () => {
     );
   };
 
-  // RENDER COLUMN
+
   const renderColumn = (status, label) => (
     <Droppable droppableId={status}>
       {(provided) => (
@@ -113,7 +111,7 @@ const Tasks = () => {
                       <b>Due:</b> {task.dueDate || "Not set"}
                     </p>
 
-                    {/* EDIT / DELETE BUTTONS */}
+                
                     <div className="absolute top-3 right-3 flex gap-2">
                       <button onClick={() => openEditModal(task)}>
                         <FaEdit />
@@ -136,14 +134,13 @@ const Tasks = () => {
   return (
     <div className="bg-white min-h-screen">
       <main className="pt-16 md:ml-8 p-6 max-w-6xl mx-auto">
-        {/* MOBILE ALERT */}
+    
         <div className="md:hidden mb-4">
           <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-3 rounded-lg text-sm">
             ⚠️ For a better experience, please use <b>Desktop site</b>.
           </div>
         </div>
 
-        {/* ADD TASK */}
         <div className="bg-gradient-to-b from-blue-200 to-white p-6 rounded-xl shadow mb-8">
           <h2 className="text-xl font-bold text-blue-800 mb-4">
             Your To-Dos → Get It Done Soon
@@ -194,7 +191,7 @@ const Tasks = () => {
           </div>
         </div>
 
-        {/* MOBILE VIEW */}
+      
         <div className="md:hidden">
           {tasks.map((task) => (
             <div
@@ -220,7 +217,6 @@ const Tasks = () => {
           ))}
         </div>
 
-        {/* DESKTOP VIEW */}
         <div className="hidden md:block">
           <DragDropContext onDragEnd={onDragEnd}>
             <div className="grid md:grid-cols-3 gap-6">
@@ -232,7 +228,6 @@ const Tasks = () => {
         </div>
       </main>
 
-      {/* EDIT MODAL */}
       {isEditOpen && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-[90%] max-w-md">

@@ -33,7 +33,7 @@ const DashboardCharts = () => {
 
   return (
     <>
-      {/* CARDS */}
+   
       <div className="grid md:grid-cols-4 gap-6 mt-6">
         {[
           { label: "Pending", value: pending, color: "bg-yellow-100" },
@@ -48,10 +48,10 @@ const DashboardCharts = () => {
         ))}
       </div>
 
-      {/* CHARTS */}
+
       <div className="grid md:grid-cols-3 gap-6 mt-8">
 
-        {/* DONUT */}
+     
         <div
           onClick={() => setOpenChart("priority")}
           className="bg-white p-5 rounded-xl shadow cursor-pointer hover:scale-105 transition"  >
@@ -73,7 +73,7 @@ const DashboardCharts = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* BAR */}
+    
         <div
           onClick={() => setOpenChart("status")}
           className="bg-white p-5 rounded-xl shadow cursor-pointer hover:scale-105 transition" >
@@ -88,7 +88,7 @@ const DashboardCharts = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* PROGRESS */}
+ 
         <div
           
           className="bg-white p-5 rounded-xl shadow cursor-pointer"
@@ -104,7 +104,7 @@ const DashboardCharts = () => {
         </div>
       </div>
 
-      {/* MODAL */}
+
       {openChart && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl w-[90%] max-w-2xl">

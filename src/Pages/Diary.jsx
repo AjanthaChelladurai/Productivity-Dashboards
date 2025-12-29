@@ -4,14 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const STORAGE_KEY = "diaryNotes";
 
-// 🎨 TRUE RANDOM PASTEL COLOR
 const getRandomColor = () => {
   const hue = Math.floor(Math.random() * 360);
   return `hsl(${hue}, 80%, 85%)`;
 };
 
 const Diary = () => {
-  // ✅ LOAD FROM localStorage (safe)
+
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -21,7 +20,7 @@ const Diary = () => {
   const [text, setText] = useState("");
   const [editId, setEditId] = useState(null);
 
-  // ✅ SAVE TO localStorage
+ 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
@@ -50,14 +49,14 @@ const Diary = () => {
     const now = new Date();
 
     if (editId) {
-      // ✏️ EDIT
+     
       setNotes((prev) =>
         prev.map((n) =>
           n.id === editId ? { ...n, text } : n
         )
       );
     } else {
-      // ➕ ADD
+    
       const newNote = {
         id: Date.now(),
         text,
@@ -78,7 +77,7 @@ const Diary = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      {/* HEADER */}
+   
       <div className="flex justify-between items-center mb-6">
         <button
           onClick={openNewModal}
@@ -88,7 +87,7 @@ const Diary = () => {
         </button>
       </div>
 
-      {/* NOTES */}
+ 
       {notes.length === 0 ? (
         <p className="text-gray-500 text-center mt-20">
           No notes yet. Click <b>New Note</b>
@@ -107,7 +106,7 @@ const Diary = () => {
                 className="p-4 rounded-xl shadow relative"
                 style={{ backgroundColor: note.color }}
               >
-                {/* ACTIONS */}
+               
                 <div className="absolute top-3 right-3 flex gap-3">
                   <button
                     onClick={() => openEditModal(note)}
@@ -137,7 +136,7 @@ const Diary = () => {
         </div>
       )}
 
-      {/* MODAL */}
+      
       <AnimatePresence>
         {isOpen && (
           <motion.div
